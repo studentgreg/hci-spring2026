@@ -32,12 +32,21 @@ with tab1:
 with tab2:
     st.header("Charts")
     with st.expander("Line Chart"):
-        parameter_selected = st.selectbox(
-            "Select a parameter:",
-            df.columns
-        )
+        col1, col2 = st.columns([4,1])
+        with col1:
+            parameter_selected = st.selectbox(
+                "Select a parameter:",
+                df.columns
+            )
+        with col2:
+            colorSelected = st.color_picker(
+                "Pick a color:",
+                "#6495ED"
+            )
         fig1 = px.line(df,
                        x="Time",
                        y=parameter_selected,
-                       title=f"{parameter_selected} over Time")
+                       title=f"{parameter_selected} over Time"
+            )
+        fig1.update_traces(line_color=colorSelected)
         st.plotly_chart(fig1) # streamlit displays plotly charts
