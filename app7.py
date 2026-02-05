@@ -50,3 +50,13 @@ with tab2:
             )
         fig1.update_traces(line_color=colorSelected)
         st.plotly_chart(fig1) # streamlit displays plotly charts
+
+    with st.expander("3D Plot"):
+        fig2 = px.scatter_3d(df,
+                             x="Longitude",
+                             y="Latitude",
+                             z="Total Water Column (m)",
+                             color="Temperature (c)"
+        )
+        fig2.update_scenes(zaxis_autorange="reversed")
+        st.plotly_chart(fig2)
